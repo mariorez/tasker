@@ -1,4 +1,4 @@
-package dev.mario.tasker.application.usecase;
+package dev.mario.tasker.core.usecase;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

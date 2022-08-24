@@ -1,6 +1,6 @@
 package dev.mario.tasker.adapter.out;
 
-import dev.mario.tasker.application.domain.Bucket;
+import dev.mario.tasker.core.domain.Bucket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

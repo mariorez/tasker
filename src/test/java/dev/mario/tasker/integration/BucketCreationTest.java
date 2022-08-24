@@ -3,7 +3,7 @@ package dev.mario.tasker.integration;
 import com.github.javafaker.Faker;
 import com.github.jsontemplate.JsonTemplate;
 import dev.mario.tasker.adapter.out.BucketRepository;
-import dev.mario.tasker.application.domain.Bucket;
+import dev.mario.tasker.core.domain.Bucket;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

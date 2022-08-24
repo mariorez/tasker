@@ -1,7 +1,7 @@
-package dev.mario.tasker.application.usecase;
+package dev.mario.tasker.core.usecase;
 
 import dev.mario.tasker.adapter.out.BucketRepository;
-import dev.mario.tasker.application.domain.Bucket;
+import dev.mario.tasker.core.domain.Bucket;
 import org.springframework.stereotype.Service;
 
 @Service

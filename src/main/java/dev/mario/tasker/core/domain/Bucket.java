@@ -1,4 +1,4 @@
-package dev.mario.tasker.application.domain;
+package dev.mario.tasker.core.domain;
 
 import org.hibernate.annotations.NaturalId;
 
