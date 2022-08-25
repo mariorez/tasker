@@ -2,23 +2,20 @@ package dev.mario.tasker.core.domain;
 
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "bucket")
-public class Bucket implements Serializable {
+public class Task implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,20 +29,15 @@ public class Bucket implements Serializable {
     private double position;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bucket", orphanRemoval = true)
-    private List<Task> tasks = new ArrayList<>();
-
-    public Bucket addTask(Task task) {
-        this.tasks.add(task);
-        task.setBucket(this);
-        return this;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bucket_id")
+    private Bucket bucket;
 
     public Long getId() {
         return id;
     }
 
-    public Bucket setId(Long id) {
+    public Task setId(Long id) {
         this.id = id;
         return this;
     }
@@ -54,7 +46,7 @@ public class Bucket implements Serializable {
         return externalId;
     }
 
-    public Bucket setExternalId(UUID externalId) {
+    public Task setExternalId(UUID externalId) {
         this.externalId = externalId;
         return this;
     }
@@ -63,7 +55,7 @@ public class Bucket implements Serializable {
         return position;
     }
 
-    public Bucket setPosition(double position) {
+    public Task setPosition(double position) {
         this.position = position;
         return this;
     }
@@ -72,8 +64,17 @@ public class Bucket implements Serializable {
         return name;
     }
 
-    public Bucket setName(String name) {
+    public Task setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Bucket getBucket() {
+        return bucket;
+    }
+
+    public Task setBucket(Bucket bucket) {
+        this.bucket = bucket;
         return this;
     }
 
@@ -81,8 +82,8 @@ public class Bucket implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bucket bucket = (Bucket) o;
-        return Objects.equals(externalId, bucket.externalId);
+        Task task = (Task) o;
+        return Objects.equals(externalId, task.externalId);
     }
 
     @Override
