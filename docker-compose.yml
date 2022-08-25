@@ -1,0 +1,9 @@
+services:
+  postgres:
+    container_name: postgres_tasker
+    image: postgres:10-bullseye
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tasker
+      POSTGRES_PASSWORD: tasker

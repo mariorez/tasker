@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.UUID;
 
@@ -18,13 +21,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Testcontainers
 public class BucketCreationTest {
 
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private BucketRepository repository;
-    private Faker faker = new Faker();
+    @Container
+    private static final PostgreSQLContainer<?> postgresDB = new PostgreSQLContainer<>("postgres:10-bullseye")
+            .withDatabaseName("testdb");
+
+    private final Faker faker = new Faker();
 
     @Test
     void WHEN_CreatingBucket_GIVEN_ValidPayload_MUST_ReturnCreated() throws Exception {
