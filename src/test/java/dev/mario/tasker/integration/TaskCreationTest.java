@@ -2,8 +2,6 @@ package dev.mario.tasker.integration;
 
 import com.github.javafaker.Faker;
 import com.github.jsontemplate.JsonTemplate;
-import dev.mario.tasker.adapter.out.TaskRepository;
-import dev.mario.tasker.core.domain.Task;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,7 +13,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,8 +23,6 @@ public class TaskCreationTest {
 
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private TaskRepository repository;
     @Container
     private static final PostgreSQLContainer<?> postgresDB = new PostgreSQLContainer<>("postgres:10-bullseye")
             .withDatabaseName("testdb");
@@ -62,10 +57,5 @@ public class TaskCreationTest {
                         .contentType("application/json")
                         .content(payload))
                 .andExpect(status().isCreated());
-
-        Task task = repository.finByExternalId(taskExternalId).get();
-        assertThat(task.getExternalId()).isEqualTo(taskExternalId);
-        assertThat(task.getPosition()).isEqualTo(position);
-        assertThat(task.getName()).isEqualTo(name);
     }
 }

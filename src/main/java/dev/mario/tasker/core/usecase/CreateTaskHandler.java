@@ -15,7 +15,7 @@ public class CreateTaskHandler {
 
     public void handle(CreateTask createTask) {
 
-        var bucket = repository.finByExternalId(createTask.getBucketExternalId()).orElseThrow();
+        var bucket = repository.findOneByExternalId(createTask.getBucketExternalId()).orElseThrow();
 
         repository.save(bucket.addTask(new Task()
                 .setExternalId(createTask.getExternalId())

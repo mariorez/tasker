@@ -2,8 +2,6 @@ package dev.mario.tasker.integration;
 
 import com.github.javafaker.Faker;
 import com.github.jsontemplate.JsonTemplate;
-import dev.mario.tasker.adapter.out.BucketRepository;
-import dev.mario.tasker.core.domain.Bucket;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,7 +13,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,8 +23,6 @@ public class BucketCreationTest {
 
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private BucketRepository repository;
     @Container
     private static final PostgreSQLContainer<?> postgresDB = new PostgreSQLContainer<>("postgres:10-bullseye")
             .withDatabaseName("testdb");
@@ -58,10 +53,5 @@ public class BucketCreationTest {
                         .contentType("application/json")
                         .content(payload))
                 .andExpect(status().isCreated());
-
-        Bucket bucket = repository.finByExternalId(externalId).get();
-        assertThat(bucket.getExternalId()).isEqualTo(externalId);
-        assertThat(bucket.getPosition()).isEqualTo(position);
-        assertThat(bucket.getName()).isEqualTo(name);
     }
 }

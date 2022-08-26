@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface BucketRepository extends JpaRepository<Bucket, Long> {
 
     @Query("SELECT b FROM Bucket b WHERE b.externalId=?1")
-    Optional<Bucket> finByExternalId(UUID externalId);
+    Optional<Bucket> findOneByExternalId(UUID externalId);
 }

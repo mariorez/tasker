@@ -33,13 +33,7 @@ public class Bucket implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bucket", orphanRemoval = true)
-    private List<Task> tasks = new ArrayList<>();
-
-    public Bucket addTask(Task task) {
-        this.tasks.add(task);
-        task.setBucket(this);
-        return this;
-    }
+    private final List<Task> tasks = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -74,6 +68,16 @@ public class Bucket implements Serializable {
 
     public Bucket setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public Bucket addTask(Task task) {
+        this.tasks.add(task);
+        task.setBucket(this);
         return this;
     }
 
