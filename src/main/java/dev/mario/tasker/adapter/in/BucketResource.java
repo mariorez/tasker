@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("v1/buckets")
-public class BucketController {
+public class BucketResource {
 
     @Autowired
     private CreateBucketHandler createBucketHandler;

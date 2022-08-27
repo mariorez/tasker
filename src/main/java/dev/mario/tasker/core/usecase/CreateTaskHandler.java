@@ -1,7 +1,7 @@
 package dev.mario.tasker.core.usecase;
 
-import dev.mario.tasker.adapter.out.BucketRepository;
 import dev.mario.tasker.core.domain.Task;
+import dev.mario.tasker.core.port.out.BucketRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +17,7 @@ public class CreateTaskHandler {
 
         var bucket = repository.findOneByExternalId(createTask.getBucketExternalId()).orElseThrow();
 
-        repository.save(bucket.addTask(new Task()
+        repository.create(bucket.addTask(new Task()
                 .setExternalId(createTask.getExternalId())
                 .setPosition(createTask.getPosition())
                 .setName(createTask.getName())));

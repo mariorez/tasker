@@ -1,4 +1,4 @@
-package dev.mario.tasker.integration;
+package dev.mario.tasker.adapter.in;
 
 import com.github.javafaker.Faker;
 import com.github.jsontemplate.JsonTemplate;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers
-public class BucketCreationTest {
+class BucketResourceTest {
 
     @Autowired
     private MockMvc mockMvc;
