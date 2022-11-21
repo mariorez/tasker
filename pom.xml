@@ -20,7 +20,7 @@
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <javafaker.version>1.0.2</javafaker.version>
         <jsontemplate.version>0.2.2</jsontemplate.version>
-        <testcontainers.version>1.17.3</testcontainers.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
 
     <dependencyManagement>
