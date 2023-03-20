@@ -16,7 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <postgresql.version>42.5.0</postgresql.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <javafaker.version>1.0.2</javafaker.version>
         <jsontemplate.version>0.2.2</jsontemplate.version>
